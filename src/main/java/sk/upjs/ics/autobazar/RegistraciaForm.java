@@ -337,8 +337,33 @@ public class RegistraciaForm extends javax.swing.JDialog {
     }//GEN-LAST:event_krajinaComboBoxActionPerformed
 
     private void registrovatButtonActionPerformed(java.awt.event.ActionEvent evt) {
-      
+        Pouzivatel p = new Pouzivatel();
+        p.setId(Long.MIN_VALUE);
+        p.setUzivatelskeMeno(uzivatelskeMenoField.getText());
+        p.setMeno(menoField.getText());
+        p.setPriezvisko(priezviskoField.getText());
+        p.setAdresa(adresaField.getText());
+        p.setMesto(mestoField.getText());
+        p.setPsc(pscField.getText());
+        p.setKrajina(krajinaComboBox.getToolTipText());
+        p.setTelefonneCislo(telefonField.getText());
+        p.setEmail(emailField.getText());
        
+        PouzivatelDao pd = new PouzivatelDao() {
+
+            @Override
+            public void pridajPouzivatela(Pouzivatel pouzivatel) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void odstranPouzivatela(Pouzivatel pouzivatel) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        
+        pd.pridajPouzivatela(p);
+        
         setVisible(false);
     }
     
