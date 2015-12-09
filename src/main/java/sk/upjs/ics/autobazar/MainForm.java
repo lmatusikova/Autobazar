@@ -1,18 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sk.upjs.ics.autobazar;
 
 import com.sun.xml.internal.bind.v2.model.impl.ModelBuilder;
+import static java.lang.System.load;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
-/**
- *
- * @author PC
- */
 public class MainForm extends javax.swing.JFrame {
 
     private MySqlInzeratDao inzeratDao = new MySqlInzeratDao();
@@ -22,9 +19,29 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
+        currentDateAndTime();
         refresh();
+        
     }
 
+    
+    public void currentDateAndTime(){
+        String[] dayOfWeek = {"nedela", "pondelok", "utorok", "streda", "stvrtok", "piatok", "sobota"};
+        String[] months = {"januara", "februara", "marca", "aprila", "juna", "jula", "augusta", "septembra", "oktobra", "novembra", "decembra"};
+        Calendar cal = new GregorianCalendar();
+       
+        int year = cal.get(Calendar.YEAR);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        
+        int nameOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+        int nameOfDay = cal.get(Calendar.DAY_OF_WEEK);
+       
+        Calendar calen = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        
+        //+' '+hour+":"+minute+":"+second
+        dateAndTimeLabel.setText("Dnes je"+' '+dayOfWeek[nameOfDay]+", "+day+"."+months[nameOfMonth -1]+' '+year +' '+ sdf.format(calen.getTime()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,8 +71,8 @@ public class MainForm extends javax.swing.JFrame {
         prihlasenieButton = new javax.swing.JButton();
         registraciaButton = new javax.swing.JButton();
         languageLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        datumTextField = new javax.swing.JTextField();
+        dateAndTimeLabel = new javax.swing.JLabel();
+        prihlasenyPouzivatelLabel = new javax.swing.JLabel();
         autobazarPanel = new javax.swing.JPanel();
         nadpisLabel = new javax.swing.JLabel();
         pridatInzeratButton = new javax.swing.JButton();
@@ -207,20 +224,16 @@ public class MainForm extends javax.swing.JFrame {
         languageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/upjs/ics/autobazar/ikonky/sk.png"))); // NOI18N
         languageLabel.setText("SK");
 
-        jLabel3.setText("Dobry den, dnes je");
-
-        datumTextField.setText("datum");
-
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
         topPanelLayout.setHorizontalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(datumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dateAndTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                .addComponent(prihlasenyPouzivatelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(registraciaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(prihlasenieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,8 +247,8 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(prihlasenieButton)
                 .addComponent(registraciaButton)
                 .addComponent(languageLabel)
-                .addComponent(jLabel3)
-                .addComponent(datumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(dateAndTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(prihlasenyPouzivatelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         autobazarPanel.setBackground(new java.awt.Color(57, 74, 133));
@@ -262,9 +275,9 @@ public class MainForm extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(nadpisLabel))
                     .addGroup(autobazarPanelLayout.createSequentialGroup()
-                        .addGap(174, 174, 174)
+                        .addGap(169, 169, 169)
                         .addComponent(podnadpisLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pridatInzeratButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
         );
@@ -273,9 +286,9 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(autobazarPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(nadpisLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(podnadpisLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, autobazarPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pridatInzeratButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -328,7 +341,7 @@ public class MainForm extends javax.swing.JFrame {
                     .addComponent(vyhladavaciPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(downPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         autobazarDesktopPane.setLayer(vyhladavaciPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         autobazarDesktopPane.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -454,10 +467,9 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JDesktopPane autobazarDesktopPane;
     private javax.swing.JPanel autobazarPanel;
     private javax.swing.JLabel copyrightLabel;
-    private javax.swing.JTextField datumTextField;
+    private javax.swing.JLabel dateAndTimeLabel;
     private javax.swing.JPanel downPanel;
     private javax.swing.JList inzeratyList;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel languageLabel;
@@ -467,6 +479,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel podnadpisLabel;
     private javax.swing.JButton pridatInzeratButton;
     private javax.swing.JButton prihlasenieButton;
+    private javax.swing.JLabel prihlasenyPouzivatelLabel;
     private javax.swing.JButton registraciaButton;
     private javax.swing.JComboBox rocnikDoBox;
     private javax.swing.JLabel rocnikDoLabel;

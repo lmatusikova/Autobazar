@@ -79,7 +79,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="downPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -319,10 +319,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="datumTextField" min="-2" pref="63" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="dateAndTimeLabel" min="-2" pref="370" max="-2" attributes="0"/>
+                      <EmptySpace pref="199" max="32767" attributes="0"/>
+                      <Component id="prihlasenyPouzivatelLabel" min="-2" pref="107" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="registraciaButton" min="-2" pref="117" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="prihlasenieButton" min="-2" pref="117" max="-2" attributes="0"/>
@@ -338,8 +338,8 @@
                       <Component id="prihlasenieButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="registraciaButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="languageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="datumTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dateAndTimeLabel" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="prihlasenyPouzivatelLabel" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -375,15 +375,9 @@
                 <Property name="text" type="java.lang.String" value="SK"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Dobry den, dnes je"/>
-              </Properties>
+            <Component class="javax.swing.JLabel" name="dateAndTimeLabel">
             </Component>
-            <Component class="javax.swing.JTextField" name="datumTextField">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="datum"/>
-              </Properties>
+            <Component class="javax.swing.JLabel" name="prihlasenyPouzivatelLabel">
             </Component>
           </SubComponents>
         </Container>
@@ -404,11 +398,11 @@
                               <Component id="nadpisLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
                               <Component id="podnadpisLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="472" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="pridatInzeratButton" min="-2" pref="115" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                   </Group>
@@ -419,9 +413,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="nadpisLabel" min="-2" pref="54" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="podnadpisLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="podnadpisLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
