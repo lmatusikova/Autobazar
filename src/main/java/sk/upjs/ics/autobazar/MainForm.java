@@ -190,9 +190,19 @@ public class MainForm extends javax.swing.JFrame {
 
         prihlasenieButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/upjs/ics/autobazar/ikonky/panacik.png"))); // NOI18N
         prihlasenieButton.setText("Prihlasenie");
+        prihlasenieButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prihlasenieButtonActionPerformed(evt);
+            }
+        });
 
         registraciaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/upjs/ics/autobazar/ikonky/panacik.png"))); // NOI18N
         registraciaButton.setText("Registracia");
+        registraciaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registraciaButtonActionPerformed(evt);
+            }
+        });
 
         languageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/upjs/ics/autobazar/ikonky/sk.png"))); // NOI18N
         languageLabel.setText("SK");
@@ -209,7 +219,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(datumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(datumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(registraciaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -364,15 +374,6 @@ public class MainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_znackaBoxActionPerformed
 
-    private void registraciaButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        RegistraciaForm rf = new RegistraciaForm(this, true);
-        rf.setVisible(true);
-    }
-    
-    private void prihlasenieButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        PrihlasenieForm pf = new PrihlasenieForm(this, true);
-        pf.setVisible(true);
-    }
     
     private void vyhladajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vyhladajButtonActionPerformed
         List<Inzerat> inzeraty = inzeratDao.vyhladaj(znackaBox.getSelectedItem().toString(), modelBox.getSelectedItem().toString(), 
@@ -399,6 +400,16 @@ public class MainForm extends javax.swing.JFrame {
     private void rocnikOdBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rocnikOdBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rocnikOdBoxActionPerformed
+
+    private void registraciaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registraciaButtonActionPerformed
+        RegistraciaForm rf = new RegistraciaForm(this, true);
+        rf.setVisible(true);
+    }//GEN-LAST:event_registraciaButtonActionPerformed
+
+    private void prihlasenieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prihlasenieButtonActionPerformed
+        PrihlasenieForm pf = new PrihlasenieForm(this, true);
+        pf.setVisible(true);
+    }//GEN-LAST:event_prihlasenieButtonActionPerformed
 
     private void refresh() {
         List<Inzerat> inzeraty = inzeratDao.dajVsetky();
