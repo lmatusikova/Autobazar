@@ -62,13 +62,15 @@ public class RegistraciaForm extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registracia");
-        setAutoRequestFocus(false);
-        setBackground(new java.awt.Color(0, 153, 204));
+        setBackground(new java.awt.Color(57, 74, 133));
         setForeground(new java.awt.Color(240, 240, 240));
-        setPreferredSize(new java.awt.Dimension(700, 800));
+        setModal(true);
+        setPreferredSize(new java.awt.Dimension(700, 720));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registracia");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setText("Uzivatelske meno:");
 
@@ -338,33 +340,20 @@ public class RegistraciaForm extends javax.swing.JDialog {
 
     private void registrovatButtonActionPerformed(java.awt.event.ActionEvent evt) {
         Pouzivatel p = new Pouzivatel();
-        p.setId(Long.MIN_VALUE);
+        //p.setId(Long.MIN_VALUE);
         p.setUzivatelskeMeno(uzivatelskeMenoField.getText());
         p.setMeno(menoField.getText());
         p.setPriezvisko(priezviskoField.getText());
         p.setAdresa(adresaField.getText());
         p.setMesto(mestoField.getText());
         p.setPsc(pscField.getText());
-        p.setKrajina(krajinaComboBox.getToolTipText());
+      //  p.setKrajina(krajinaComboBox.getToolTipText());
         p.setTelefonneCislo(telefonField.getText());
         p.setEmail(emailField.getText());
        
-        PouzivatelDao pd = new PouzivatelDao() {
-
-            @Override
-            public void pridajPouzivatela(Pouzivatel pouzivatel) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void odstranPouzivatela(Pouzivatel pouzivatel) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-        
+        PouzivatelDao pd = new MySqlPouzivatelDao();
         pd.pridajPouzivatela(p);
         
-        setVisible(false);
     }
     
     

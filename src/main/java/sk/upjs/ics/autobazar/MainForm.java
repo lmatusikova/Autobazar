@@ -55,13 +55,13 @@ public class MainForm extends javax.swing.JFrame {
         registraciaButton = new javax.swing.JButton();
         languageLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        datumTextField = new javax.swing.JTextField();
         autobazarPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        nadpisLabel = new javax.swing.JLabel();
         pridatInzeratButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        podnadpisLabel = new javax.swing.JLabel();
         downPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        copyrightLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -199,7 +199,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jLabel3.setText("Dobry den, dnes je");
 
-        jTextField1.setText("datum");
+        datumTextField.setText("datum");
 
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
@@ -209,7 +209,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(datumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(registraciaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,22 +225,22 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(registraciaButton)
                 .addComponent(languageLabel)
                 .addComponent(jLabel3)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(datumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         autobazarPanel.setBackground(new java.awt.Color(57, 74, 133));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/upjs/ics/autobazar/ikonky/A.png"))); // NOI18N
-        jLabel2.setText("utobazar.sk");
+        nadpisLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        nadpisLabel.setForeground(new java.awt.Color(255, 255, 255));
+        nadpisLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sk/upjs/ics/autobazar/ikonky/A.png"))); // NOI18N
+        nadpisLabel.setText("utobazar.sk");
 
         pridatInzeratButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         pridatInzeratButton.setText("Pridat inzerat");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("najlepsi autobazar na Slovensku");
+        podnadpisLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        podnadpisLabel.setForeground(new java.awt.Color(255, 255, 255));
+        podnadpisLabel.setText("najlepsi autobazar na Slovensku");
 
         javax.swing.GroupLayout autobazarPanelLayout = new javax.swing.GroupLayout(autobazarPanel);
         autobazarPanel.setLayout(autobazarPanelLayout);
@@ -250,10 +250,10 @@ public class MainForm extends javax.swing.JFrame {
                 .addGroup(autobazarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(autobazarPanelLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jLabel2))
+                        .addComponent(nadpisLabel))
                     .addGroup(autobazarPanelLayout.createSequentialGroup()
                         .addGap(174, 174, 174)
-                        .addComponent(jLabel4)))
+                        .addComponent(podnadpisLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
                 .addComponent(pridatInzeratButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
@@ -262,17 +262,17 @@ public class MainForm extends javax.swing.JFrame {
             autobazarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(autobazarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nadpisLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(podnadpisLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, autobazarPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pridatInzeratButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
-        jLabel1.setText("Copyright © 2015 Autobazar SK");
+        copyrightLabel.setText("Copyright © 2015 Autobazar SK");
 
         javax.swing.GroupLayout downPanelLayout = new javax.swing.GroupLayout(downPanel);
         downPanel.setLayout(downPanelLayout);
@@ -280,14 +280,14 @@ public class MainForm extends javax.swing.JFrame {
             downPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(downPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(copyrightLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         downPanelLayout.setVerticalGroup(
             downPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, downPanelLayout.createSequentialGroup()
                 .addGap(0, 11, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+                .addComponent(copyrightLabel))
         );
 
         javax.swing.GroupLayout autobazarDesktopPaneLayout = new javax.swing.GroupLayout(autobazarDesktopPane);
@@ -335,7 +335,7 @@ public class MainForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(autobazarDesktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(autobazarDesktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -442,18 +442,18 @@ public class MainForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane autobazarDesktopPane;
     private javax.swing.JPanel autobazarPanel;
+    private javax.swing.JLabel copyrightLabel;
+    private javax.swing.JTextField datumTextField;
     private javax.swing.JPanel downPanel;
     private javax.swing.JList inzeratyList;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel languageLabel;
     private javax.swing.JComboBox modelBox;
     private javax.swing.JLabel modelLabel;
+    private javax.swing.JLabel nadpisLabel;
+    private javax.swing.JLabel podnadpisLabel;
     private javax.swing.JButton pridatInzeratButton;
     private javax.swing.JButton prihlasenieButton;
     private javax.swing.JButton registraciaButton;
