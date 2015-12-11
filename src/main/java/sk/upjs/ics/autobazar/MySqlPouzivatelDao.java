@@ -1,6 +1,8 @@
 package sk.upjs.ics.autobazar;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import java.util.List;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class MySqlPouzivatelDao implements PouzivatelDao {
@@ -26,6 +28,23 @@ public class MySqlPouzivatelDao implements PouzivatelDao {
     public void odstranPouzivatela(Pouzivatel pouzivatel) {
          String sql = "delete from inzerat where id = ?";
          jdbcTemplate.update(sql, pouzivatel.getId());
+    }
+
+    @Override
+    public boolean overPouzivatela(String uzivatelskeMeno, String heslo) {
+        String sql = "SELECT * FROM Pouzivatel";
+        BeanPropertyRowMapper<Pouzivatel> mapper = BeanPropertyRowMapper.newInstance(Pouzivatel.class);
+        List<Pouzivatel> pom = jdbcTemplate.query(sql, mapper);
+        
+        for(Pouzivatel p : pom) {
+            if(p.getUzivatelskeMeno().equals(uzivatelskeMeno) && p.getHeslo().equals(heslo)) {
+                
+                    return true;
+                
+            }
+        }
+        
+        return false;
     }
     
 }
