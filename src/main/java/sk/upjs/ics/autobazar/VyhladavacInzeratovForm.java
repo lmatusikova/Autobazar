@@ -15,7 +15,7 @@ public class VyhladavacInzeratovForm extends javax.swing.JDialog {
         
     }
     
-    VyhladavacInzeratovForm(Frame parent, boolean modal, List<Inzerat> inzeraty) {
+    VyhladavacInzeratovForm(Frame parent, boolean modal, List<InzeratOsobne> inzeraty) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);

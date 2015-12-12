@@ -1,7 +1,6 @@
-
+ 
 package sk.upjs.ics.autobazar;
 
-import com.sun.xml.internal.bind.v2.model.impl.ModelBuilder;
 import static java.lang.System.load;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -12,14 +11,21 @@ import java.util.GregorianCalendar;
 
 public class MainForm extends javax.swing.JFrame {
 
-    private MySqlInzeratDao inzeratDao = new MySqlInzeratDao();
-    private MySqlPouzivatelDao pouzivatelDao = new MySqlPouzivatelDao();
+    //private MySqlInzeratDao inzeratDao = new MySqlInzeratDao();
+    private InzeratOsobneDao inzeratDao = InzeratFactory.INSTANCE.getInzeratOsobneDao();
+    private InzeratNakladneDao inzeratDao2 = InzeratFactory.INSTANCE.getInzeratNakladneDao();
+    private PouzivatelDao pouzivatelDao = InzeratFactory.INSTANCE.getPouzivatel();
+    //private MySqlPouzivatelDao pouzivatelDao = new MySqlPouzivatelDao();
+    
+    private boolean osobne = true;
+    private boolean nakladne = false;
+    
     /**
      * Creates new form MainForm
      */
     public MainForm() {
         initComponents();
-        currentDateAndTime();
+        //currentDateAndTime();
         refresh();
         
     }
@@ -77,6 +83,8 @@ public class MainForm extends javax.swing.JFrame {
         nadpisLabel = new javax.swing.JLabel();
         pridatInzeratButton = new javax.swing.JButton();
         podnadpisLabel = new javax.swing.JLabel();
+        osobneButton = new javax.swing.JButton();
+        nakladneButton = new javax.swing.JButton();
         downPanel = new javax.swing.JPanel();
         copyrightLabel = new javax.swing.JLabel();
 
@@ -265,6 +273,20 @@ public class MainForm extends javax.swing.JFrame {
         podnadpisLabel.setForeground(new java.awt.Color(255, 255, 255));
         podnadpisLabel.setText("najlepsi autobazar na Slovensku");
 
+        osobneButton.setText("Osobne");
+        osobneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                osobneButtonActionPerformed(evt);
+            }
+        });
+
+        nakladneButton.setText("Nakladne");
+        nakladneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nakladneButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout autobazarPanelLayout = new javax.swing.GroupLayout(autobazarPanel);
         autobazarPanel.setLayout(autobazarPanelLayout);
         autobazarPanelLayout.setHorizontalGroup(
@@ -276,8 +298,12 @@ public class MainForm extends javax.swing.JFrame {
                         .addComponent(nadpisLabel))
                     .addGroup(autobazarPanelLayout.createSequentialGroup()
                         .addGap(169, 169, 169)
-                        .addComponent(podnadpisLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(podnadpisLabel)
+                        .addGap(73, 73, 73)
+                        .addComponent(osobneButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nakladneButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
                 .addComponent(pridatInzeratButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
         );
@@ -287,7 +313,10 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(nadpisLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(podnadpisLabel)
+                .addGroup(autobazarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(podnadpisLabel)
+                    .addComponent(osobneButton)
+                    .addComponent(nakladneButton))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, autobazarPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -309,7 +338,7 @@ public class MainForm extends javax.swing.JFrame {
         downPanelLayout.setVerticalGroup(
             downPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, downPanelLayout.createSequentialGroup()
-                .addGap(0, 11, Short.MAX_VALUE)
+                .addGap(0, 3, Short.MAX_VALUE)
                 .addComponent(copyrightLabel))
         );
 
@@ -340,8 +369,8 @@ public class MainForm extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addComponent(vyhladavaciPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(downPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(downPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
         autobazarDesktopPane.setLayer(vyhladavaciPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         autobazarDesktopPane.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -389,7 +418,7 @@ public class MainForm extends javax.swing.JFrame {
 
     
     private void vyhladajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vyhladajButtonActionPerformed
-        List<Inzerat> inzeraty = inzeratDao.vyhladaj(znackaBox.getSelectedItem().toString(), modelBox.getSelectedItem().toString(), 
+        List<InzeratOsobne> inzeraty = inzeratDao.vyhladaj(znackaBox.getSelectedItem().toString(), modelBox.getSelectedItem().toString(), 
                 rocnikOdBox.getSelectedItem().toString(), rocnikDoBox.getSelectedItem().toString());
         VyhladavacInzeratovForm v = new VyhladavacInzeratovForm(this, true,inzeraty);
         v.setVisible(true);
@@ -397,12 +426,24 @@ public class MainForm extends javax.swing.JFrame {
 
     private void inzeratyListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inzeratyListMouseClicked
        if(evt.getClickCount()==2){
-            Inzerat inzerat = (Inzerat) inzeratyList.getSelectedValue();
-            
-            InzeratForm inzeratform = new InzeratForm(this, true, inzerat);
-            inzeratform.setVisible(true);
-            
-            refresh();
+            if(osobne==true && nakladne==false)
+            {
+                InzeratOsobne inzerat = (InzeratOsobne) inzeratyList.getSelectedValue();
+
+                InzeratOsobneForm inzeratform = new InzeratOsobneForm(this, true, inzerat);
+                inzeratform.setVisible(true);
+
+                refresh();
+            }
+            if(nakladne==true && osobne==false)
+            {
+                InzeratNakladne inzerat = (InzeratNakladne) inzeratyList.getSelectedValue();
+
+                InzeratNakladneForm inzeratform = new InzeratNakladneForm(this, true, inzerat);
+                inzeratform.setVisible(true);
+
+                refresh2();
+            }
         }
     }//GEN-LAST:event_inzeratyListMouseClicked
 
@@ -424,8 +465,25 @@ public class MainForm extends javax.swing.JFrame {
         pf.setVisible(true);
     }//GEN-LAST:event_prihlasenieButtonActionPerformed
 
+    private void osobneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_osobneButtonActionPerformed
+        refresh();
+    }//GEN-LAST:event_osobneButtonActionPerformed
+
+    private void nakladneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nakladneButtonActionPerformed
+        refresh2();
+    }//GEN-LAST:event_nakladneButtonActionPerformed
+
     private void refresh() {
-        List<Inzerat> inzeraty = inzeratDao.dajVsetky();
+        osobne=true;
+        nakladne=false;
+        List<InzeratOsobne> inzeraty = inzeratDao.dajVsetky();
+        inzeratyList.setListData(inzeraty.toArray());
+    }
+    
+    private void refresh2() {
+        osobne=false;
+        nakladne=true;
+        List<InzeratNakladne> inzeraty = inzeratDao2.dajVsetky();
         inzeratyList.setListData(inzeraty.toArray());
     }
     
@@ -476,6 +534,8 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JComboBox modelBox;
     private javax.swing.JLabel modelLabel;
     private javax.swing.JLabel nadpisLabel;
+    private javax.swing.JButton nakladneButton;
+    private javax.swing.JButton osobneButton;
     private javax.swing.JLabel podnadpisLabel;
     private javax.swing.JButton pridatInzeratButton;
     private javax.swing.JButton prihlasenieButton;

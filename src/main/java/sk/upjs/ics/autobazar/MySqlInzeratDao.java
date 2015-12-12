@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 
-public class MySqlInzeratDao implements InzeratDao{
+public class MySqlInzeratDao implements InzeratOsobneDao{
     private JdbcTemplate jdbcTemplate;
     
     public MySqlInzeratDao() {
@@ -20,33 +20,33 @@ public class MySqlInzeratDao implements InzeratDao{
     }
     
     @Override
-    public void pridat(Inzerat inzerat) {
+    public void pridat(InzeratOsobne inzerat) {
         String sql = "INSERT INTO inzerat VALUES (?,?,?)";
         jdbcTemplate.update(sql,null,inzerat.getZnacka(),inzerat.getModel());
     }
 
     @Override
-    public List<Inzerat> dajVsetky() {
+    public List<InzeratOsobne> dajVsetky() {
         String sql = "SELECT * FROM inzerat";
-        BeanPropertyRowMapper<Inzerat> mapper = BeanPropertyRowMapper.newInstance(Inzerat.class);
+        BeanPropertyRowMapper<InzeratOsobne> mapper = BeanPropertyRowMapper.newInstance(InzeratOsobne.class);
         return jdbcTemplate.query(sql, mapper); /*dam dopyt a mapper a vypuje zoznam uloh ktore mozme pouzit*/
     }
 
     @Override
-    public void odstranit(Inzerat uloha) {
+    public void odstranit(InzeratOsobne uloha) {
         String sql = "delete from inzerat where id = ?";
         jdbcTemplate.update(sql, uloha.getId());
     }
 
     @Override
-    public List<Inzerat> vyhladaj(String znacka, String model, String odRocnik, String doRocnik) {
+    public List<InzeratOsobne> vyhladaj(String znacka, String model, String odRocnik, String doRocnik) {
         //String sql = "select * from inzerat where znacka = ? and model = ? and rocnik >= ? and rocnik <= ?";
-        //BeanPropertyRowMapper<Inzerat> mapper = BeanPropertyRowMapper.newInstance(Inzerat.class);
+        //BeanPropertyRowMapper<Inzerat> mapper = BeanPropertyRowMapper.newInstance(InzeratOsobne.class);
         String sql = "SELECT * FROM inzerat";
-        BeanPropertyRowMapper<Inzerat> mapper = BeanPropertyRowMapper.newInstance(Inzerat.class);
-        List<Inzerat> pomocna = jdbcTemplate.query(sql, mapper);
-        List<Inzerat> pomocna2 = new LinkedList<Inzerat>();
-        for (Inzerat a1 : pomocna) {
+        BeanPropertyRowMapper<InzeratOsobne> mapper = BeanPropertyRowMapper.newInstance(InzeratOsobne.class);
+        List<InzeratOsobne> pomocna = jdbcTemplate.query(sql, mapper);
+        List<InzeratOsobne> pomocna2 = new LinkedList<InzeratOsobne>();
+        for (InzeratOsobne a1 : pomocna) {
             if (a1.getZnacka().equals(znacka)) {
                 if (a1.getModel().equals(model)) {
                     int a = a1.getRocnik().compareTo(odRocnik);
